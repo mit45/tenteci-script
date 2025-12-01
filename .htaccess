@@ -1,0 +1,44 @@
+RewriteEngine On
+RewriteBase /
+
+# HTTPS Yönlendirmesi (Opsiyonel ama önerilir)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Özel Sayfa Yönlendirmeleri
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+RewriteRule ^anasayfa/?$ index.php [L]
+RewriteRule ^hakkimizda/?$ about.php [L]
+RewriteRule ^urunler/?$ products.php [L]
+RewriteRule ^iletisim/?$ contact.php [L]
+
+# Admin Paneli Yönlendirmeleri
+RewriteRule ^yonetim/?$ admin/index.php [L]
+RewriteRule ^yonetim/giris/?$ admin/login.php [L]
+RewriteRule ^yonetim/cikis/?$ admin/logout.php [L]
+RewriteRule ^yonetim/ayarlar/?$ admin/settings.php [L]
+RewriteRule ^yonetim/urunler/?$ admin/products.php [L]
+RewriteRule ^yonetim/urun-ekle/?$ admin/product-add.php [L]
+RewriteRule ^yonetim/urun-duzenle/?$ admin/product-edit.php [L]
+RewriteRule ^yonetim/kategoriler/?$ admin/categories.php [L]
+RewriteRule ^yonetim/kategori-ekle/?$ admin/category-add.php [L]
+RewriteRule ^yonetim/kategori-duzenle/?$ admin/category-edit.php [L]
+RewriteRule ^yonetim/kategori-sil/?$ admin/category-delete.php [L]
+RewriteRule ^yonetim/hizmetler/?$ admin/services.php [L]
+RewriteRule ^yonetim/hizmet-ekle/?$ admin/service-add.php [L]
+RewriteRule ^yonetim/hizmet-duzenle/?$ admin/service-edit.php [L]
+RewriteRule ^yonetim/hizmet-sil/?$ admin/service-delete.php [L]
+RewriteRule ^yonetim/hizmet-bolgeleri/?$ admin/service-areas.php [L]
+RewriteRule ^yonetim/hizmet-bolgesi-ekle/?$ admin/service-area-add.php [L]
+RewriteRule ^yonetim/hizmet-bolgesi-duzenle/?$ admin/service-area-edit.php [L]
+RewriteRule ^yonetim/hizmet-bolgesi-sil/?$ admin/service-area-delete.php [L]
+RewriteRule ^yonetim/degerler/?$ admin/values.php [L]
+RewriteRule ^yonetim/deger-ekle/?$ admin/value-add.php [L]
+RewriteRule ^yonetim/deger-duzenle/?$ admin/value-edit.php [L]
+RewriteRule ^yonetim/deger-sil/?$ admin/value-delete.php [L]
+RewriteRule ^yonetim/mesajlar/?$ admin/messages.php [L]
+RewriteRule ^yonetim/mesaj-sil/?$ admin/message-delete.php [L]
+RewriteRule ^yonetim/profil/?$ admin/profile.php [L]
+
+# Hata sayfaları için (Opsiyonel)
+ErrorDocument 404 /index.php
