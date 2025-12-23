@@ -1,4 +1,8 @@
 <?php require_once 'includes/db.php'; ?>
+<?php
+$page_title = ($settings['about_title'] ?? 'Hakkımızda') . " - " . ($settings['site_title'] ?? 'Seçici Tente');
+$page_description = "Seçici Tente & Branda hakkında detaylı bilgi, misyonumuz ve vizyonumuz.";
+?>
 <?php include 'includes/header.php'; ?>
 
 <div class="container" style="padding-top: 40px; padding-bottom: 60px;">

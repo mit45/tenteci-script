@@ -23,6 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+<?php
+$page_title = "İletişim - " . ($settings['site_title'] ?? 'Seçici Tente');
+$page_description = "Bizimle iletişime geçin. Adres, telefon ve iletişim formu.";
+?>
 <?php include 'includes/header.php'; ?>
 
 <div class="container contact-section">

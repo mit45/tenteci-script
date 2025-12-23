@@ -67,7 +67,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 social_facebook VARCHAR(255),
                 social_instagram VARCHAR(255),
                 social_twitter VARCHAR(255),
-                social_linkedin VARCHAR(255)
+                social_linkedin VARCHAR(255),
+                meta_title VARCHAR(255),
+                meta_description TEXT,
+                meta_keywords TEXT,
+                google_verification VARCHAR(255)
             )");
 
             // 3. Categories

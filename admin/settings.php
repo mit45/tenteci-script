@@ -94,7 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             social_facebook = ?,
             social_instagram = ?,
             social_twitter = ?,
-            social_linkedin = ?
+            social_linkedin = ?,
+            meta_title = ?,
+            meta_description = ?,
+            meta_keywords = ?,
+            google_verification = ?
             WHERE id = ?";
             
         $stmt = $pdo->prepare($sql);
@@ -123,6 +127,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['social_instagram'],
             $_POST['social_twitter'],
             $_POST['social_linkedin'],
+            $_POST['meta_title'] ?? '',
+            $_POST['meta_description'] ?? '',
+            $_POST['meta_keywords'] ?? '',
+            $_POST['google_verification'] ?? '',
             $settings['id']
         ]);
         
@@ -165,6 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="button" class="tab-btn" onclick="openTab(event, 'about')">Hakkımızda Sayfası</button>
             <button type="button" class="tab-btn" onclick="openTab(event, 'contact')">İletişim</button>
             <button type="button" class="tab-btn" onclick="openTab(event, 'social')">Sosyal Medya</button>
+            <button type="button" class="tab-btn" onclick="openTab(event, 'seo')">SEO Ayarları</button>
             <button type="button" class="tab-btn" onclick="openTab(event, 'footer')">Footer</button>
         </div>
 
@@ -324,6 +333,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
                 <label>LinkedIn URL</label>
                 <input type="text" name="social_linkedin" class="form-control" value="<?php echo htmlspecialchars($settings['social_linkedin'] ?? ''); ?>">
+            </div>
+        </div>
+
+        <!-- SEO Settings -->
+        <div id="seo" class="tab-content">
+            <h2 style="margin: 0 0 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">SEO Ayarları</h2>
+            <div class="form-group">
+                <label>Meta Başlık (Title)</label>
+                <input type="text" name="meta_title" class="form-control" value="<?php echo htmlspecialchars($settings['meta_title'] ?? ''); ?>">
+                <small style="color: #666;">Boş bırakılırsa Site Başlığı kullanılır.</small>
+            </div>
+            <div class="form-group">
+                <label>Meta Açıklama (Description)</label>
+                <textarea name="meta_description" class="form-control" rows="3"><?php echo htmlspecialchars($settings['meta_description'] ?? ''); ?></textarea>
+                <small style="color: #666;">Arama motorlarında görünen açıklama metni.</small>
+            </div>
+            <div class="form-group">
+                <label>Meta Anahtar Kelimeler (Keywords)</label>
+                <textarea name="meta_keywords" class="form-control" rows="2"><?php echo htmlspecialchars($settings['meta_keywords'] ?? ''); ?></textarea>
+                <small style="color: #666;">Virgülle ayırarak yazınız. Örn: tente, branda, izmir</small>
+            </div>
+            <div class="form-group">
+                <label>Google Site Verification Code</label>
+                <input type="text" name="google_verification" class="form-control" value="<?php echo htmlspecialchars($settings['google_verification'] ?? ''); ?>">
+                <small style="color: #666;">Google Search Console doğrulama kodu (content="..." içindeki değer).</small>
             </div>
         </div>
 

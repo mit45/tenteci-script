@@ -4,25 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <?php
+    // SEO Logic
+    $seo_title = $page_title ?? ($settings['meta_title'] ?: ($settings['browser_title'] ?: ($settings['site_title'] ?? 'Seçici Tente&Branda')));
+    $seo_description = $page_description ?? ($settings['meta_description'] ?: ($settings['hero_description'] ?? 'Seçici Tente & Branda - Modern gölgelendirme sistemleri.'));
+    $seo_keywords = $page_keywords ?? ($settings['meta_keywords'] ?: 'tente, branda, pergola, gölgelendirme, kış bahçesi, otomatik tente, izmir tente, muğla tente, aydın tente, manisa tente, seçici tente');
+    $seo_image = $page_image ?? ($settings['logo_url'] ?? 'assets/images/logo.png');
+    $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    ?>
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="<?php echo htmlspecialchars($settings['hero_description'] ?? 'Seçici Tente & Branda - Modern gölgelendirme sistemleri, tente, pergola ve kış bahçesi çözümleri.'); ?>">
-    <meta name="keywords" content="tente, branda, pergola, gölgelendirme, kış bahçesi, otomatik tente, izmir tente, muğla tente, aydın tente, manisa tente, seçici tente">
+    <meta name="description" content="<?php echo htmlspecialchars($seo_description); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars($seo_keywords); ?>">
     <meta name="author" content="Ümit Topuz">
     <meta name="robots" content="index, follow">
+    <?php if (!empty($settings['google_verification'])): ?>
+    <meta name="google-site-verification" content="<?php echo htmlspecialchars($settings['google_verification']); ?>" />
+    <?php endif; ?>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
-    <meta property="og:title" content="<?php echo htmlspecialchars(!empty($settings['browser_title']) ? $settings['browser_title'] : ($settings['site_title'] ?? 'Seçici Tente&Branda')); ?>">
-    <meta property="og:description" content="<?php echo htmlspecialchars($settings['hero_description'] ?? 'Estetik ve fonksiyonel çözümlerle yaşam alanlarınıza değer katıyoruz.'); ?>">
-    <meta property="og:image" content="<?php echo htmlspecialchars($settings['logo_url'] ?? 'assets/images/logo.png'); ?>">
+    <meta property="og:url" content="<?php echo $current_url; ?>">
+    <meta property="og:title" content="<?php echo htmlspecialchars($seo_title); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($seo_description); ?>">
+    <meta property="og:image" content="<?php echo htmlspecialchars($seo_image); ?>">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
-    <meta property="twitter:title" content="<?php echo htmlspecialchars(!empty($settings['browser_title']) ? $settings['browser_title'] : ($settings['site_title'] ?? 'Seçici Tente&Branda')); ?>">
-    <meta property="twitter:description" content="<?php echo htmlspecialchars($settings['hero_description'] ?? 'Estetik ve fonksiyonel çözümlerle yaşam alanlarınıza değer katıyoruz.'); ?>">
-    <meta property="twitter:image" content="<?php echo htmlspecialchars($settings['logo_url'] ?? 'assets/images/logo.png'); ?>">
+    <meta property="twitter:url" content="<?php echo $current_url; ?>">
+    <meta property="twitter:title" content="<?php echo htmlspecialchars($seo_title); ?>">
+    <meta property="twitter:description" content="<?php echo htmlspecialchars($seo_description); ?>">
+    <meta property="twitter:image" content="<?php echo htmlspecialchars($seo_image); ?>">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -44,7 +56,7 @@
     }
     </script>
 
-    <title><?php echo htmlspecialchars(!empty($settings['browser_title']) ? $settings['browser_title'] : ($settings['site_title'] ?? 'Seçici Tente&Branda')); ?></title>
+    <title><?php echo htmlspecialchars($seo_title); ?></title>
     <link rel="icon" href="<?php echo htmlspecialchars($settings['favicon_url'] ?? 'assets/images/favicon.ico'); ?>" type="image/x-icon">
     
     <!-- Google Fonts -->

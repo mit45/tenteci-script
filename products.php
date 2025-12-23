@@ -1,4 +1,8 @@
 <?php require_once 'includes/db.php'; ?>
+<?php
+$page_title = "Ürünlerimiz - " . ($settings['site_title'] ?? 'Seçici Tente');
+$page_description = "En kaliteli tente, pergola ve gölgelendirme sistemleri ürünlerimizi inceleyin. Bioklimatik pergola, mafsallı tente ve daha fazlası.";
+?>
 <?php include 'includes/header.php'; ?>
 
 <div class="container" style="padding-top: 40px;">
